@@ -13,6 +13,9 @@ document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', 
     navMenu.classList.remove('active');
 }));
 
+// Check for reduced motion preference
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -20,7 +23,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
             target.scrollIntoView({
-                behavior: 'smooth',
+                behavior: prefersReducedMotion ? 'auto' : 'smooth',
                 block: 'start'
             });
         }
@@ -59,105 +62,115 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// Intersection Observer for animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
+// Intersection Observer for animations (only if motion is not reduced)
+if (!prefersReducedMotion) {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Observe all sections for animation
-document.querySelectorAll('section').forEach(section => {
-    section.style.opacity = '0';
-    section.style.transform = 'translateY(30px)';
-    section.style.transition = 'all 0.6s ease-out';
-    observer.observe(section);
-});
-
-// Card hover effects enhancement
-document.querySelectorAll('.skill-category, .cert-item, .education-item, .contact-item').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.transform = this.style.transform.replace('scale(1.02)', 'scale(1.03)');
-        this.style.transform = this.style.transform.replace('scale(1.03)', 'scale(1.03)');
-    });
-    
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = this.style.transform.replace('scale(1.03)', 'scale(1.02)');
-    });
-});
-
-// Timeline animation
-const timelineItems = document.querySelectorAll('.timeline-item');
-timelineItems.forEach((item, index) => {
-    item.style.opacity = '0';
-    item.style.transform = 'translateX(-50px)';
-    item.style.transition = 'all 0.6s ease-out';
-    
-    const timelineObserver = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                setTimeout(() => {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateX(0)';
-                }, index * 200);
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
             }
         });
-    }, { threshold: 0.3 });
-    
-    timelineObserver.observe(item);
-});
+    }, observerOptions);
 
-// Skills animation
-const skillItems = document.querySelectorAll('.skill-item');
-skillItems.forEach((item, index) => {
-    item.style.opacity = '0';
-    item.style.transform = 'translateX(-20px)';
-    item.style.transition = 'all 0.4s ease-out';
-    
-    const skillObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                setTimeout(() => {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateX(0)';
-                }, index * 100);
-            }
-        });
-    }, { threshold: 0.2 });
-    
-    skillObserver.observe(item);
-});
-
-// Button click effects
-document.querySelectorAll('.btn').forEach(button => {
-    button.addEventListener('click', function(e) {
-        // Create ripple effect
-        const ripple = document.createElement('span');
-        const rect = this.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height);
-        const x = e.clientX - rect.left - size / 2;
-        const y = e.clientY - rect.top - size / 2;
-        
-        ripple.style.width = ripple.style.height = size + 'px';
-        ripple.style.left = x + 'px';
-        ripple.style.top = y + 'px';
-        ripple.classList.add('ripple');
-        
-        this.appendChild(ripple);
-        
-        setTimeout(() => {
-            ripple.remove();
-        }, 600);
+    // Observe all sections for animation
+    document.querySelectorAll('section').forEach(section => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(30px)';
+        section.style.transition = 'all 0.6s ease-out';
+        observer.observe(section);
     });
-});
+}
+
+// Card hover effects enhancement (only if motion is not reduced)
+if (!prefersReducedMotion) {
+    document.querySelectorAll('.skill-category, .cert-item, .education-item, .contact-item').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = this.style.transform.replace('scale(1.02)', 'scale(1.03)');
+            this.style.transform = this.style.transform.replace('scale(1.03)', 'scale(1.03)');
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = this.style.transform.replace('scale(1.03)', 'scale(1.02)');
+        });
+    });
+}
+
+// Timeline animation (only if motion is not reduced)
+if (!prefersReducedMotion) {
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    timelineItems.forEach((item, index) => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateX(-50px)';
+        item.style.transition = 'all 0.6s ease-out';
+        
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateX(0)';
+                    }, index * 200);
+                }
+            });
+        }, { threshold: 0.3 });
+        
+        timelineObserver.observe(item);
+    });
+}
+
+// Skills animation (only if motion is not reduced)
+if (!prefersReducedMotion) {
+    const skillItems = document.querySelectorAll('.skill-item');
+    skillItems.forEach((item, index) => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateX(-20px)';
+        item.style.transition = 'all 0.4s ease-out';
+        
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateX(0)';
+                    }, index * 100);
+                }
+            });
+        }, { threshold: 0.2 });
+        
+        skillObserver.observe(item);
+    });
+}
+
+// Button click effects (only if motion is not reduced)
+if (!prefersReducedMotion) {
+    document.querySelectorAll('.btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+            // Create ripple effect
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.classList.add('ripple');
+            
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    });
+}
 
 // Add ripple effect CSS
 const style = document.createElement('style');
@@ -185,66 +198,74 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Parallax effect for hero section
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero');
-    const heroContent = document.querySelector('.hero-container');
-    
-    if (hero && heroContent) {
-        const rate = scrolled * -0.5;
-        heroContent.style.transform = `translateY(${rate}px)`;
-    }
-});
-
-// Hero title animation
-window.addEventListener('load', () => {
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle) {
-        heroTitle.style.opacity = '0';
-        heroTitle.style.transform = 'translateY(30px)';
-        setTimeout(() => {
-            heroTitle.style.transition = 'all 1s ease-out';
-            heroTitle.style.opacity = '1';
-            heroTitle.style.transform = 'translateY(0)';
-        }, 500);
-    }
-});
-
-// Smooth reveal animation for sections
-function revealOnScroll() {
-    const reveals = document.querySelectorAll('.skill-category, .cert-item, .education-item, .contact-item');
-    
-    reveals.forEach((reveal, index) => {
-        const windowHeight = window.innerHeight;
-        const elementTop = reveal.getBoundingClientRect().top;
-        const elementVisible = 150;
+// Parallax effect for hero section (only if motion is not reduced)
+if (!prefersReducedMotion) {
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const hero = document.querySelector('.hero');
+        const heroContent = document.querySelector('.hero-container');
         
-        if (elementTop < windowHeight - elementVisible) {
-            setTimeout(() => {
-                reveal.classList.add('revealed');
-            }, index * 100);
+        if (hero && heroContent) {
+            const rate = scrolled * -0.5;
+            heroContent.style.transform = `translateY(${rate}px)`;
         }
     });
 }
 
-window.addEventListener('scroll', revealOnScroll);
+// Hero title animation (only if motion is not reduced)
+if (!prefersReducedMotion) {
+    window.addEventListener('load', () => {
+        const heroTitle = document.querySelector('.hero-title');
+        if (heroTitle) {
+            heroTitle.style.opacity = '0';
+            heroTitle.style.transform = 'translateY(30px)';
+            setTimeout(() => {
+                heroTitle.style.transition = 'all 1s ease-out';
+                heroTitle.style.opacity = '1';
+                heroTitle.style.transform = 'translateY(0)';
+            }, 500);
+        }
+    });
+}
 
-// Add revealed class styles
-const revealStyle = document.createElement('style');
-revealStyle.textContent = `
-    .skill-category, .cert-item, .education-item, .contact-item {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: all 0.6s ease-out;
+// Smooth reveal animation for sections (only if motion is not reduced)
+if (!prefersReducedMotion) {
+    function revealOnScroll() {
+        const reveals = document.querySelectorAll('.skill-category, .cert-item, .education-item, .contact-item');
+        
+        reveals.forEach((reveal, index) => {
+            const windowHeight = window.innerHeight;
+            const elementTop = reveal.getBoundingClientRect().top;
+            const elementVisible = 150;
+            
+            if (elementTop < windowHeight - elementVisible) {
+                setTimeout(() => {
+                    reveal.classList.add('revealed');
+                }, index * 100);
+            }
+        });
     }
-    
-    .skill-category.revealed, .cert-item.revealed, .education-item.revealed, .contact-item.revealed {
-        opacity: 1;
-        transform: translateY(0);
-    }
-`;
-document.head.appendChild(revealStyle);
+
+    window.addEventListener('scroll', revealOnScroll);
+}
+
+// Add revealed class styles (only if motion is not reduced)
+if (!prefersReducedMotion) {
+    const revealStyle = document.createElement('style');
+    revealStyle.textContent = `
+        .skill-category, .cert-item, .education-item, .contact-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .skill-category.revealed, .cert-item.revealed, .education-item.revealed, .contact-item.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    `;
+    document.head.appendChild(revealStyle);
+}
 
 // Contact form enhancement (if exists)
 const contactForm = document.querySelector('form');
@@ -298,7 +319,7 @@ window.addEventListener('scroll', () => {
 scrollToTopBtn.addEventListener('click', () => {
     window.scrollTo({
         top: 0,
-        behavior: 'smooth'
+        behavior: prefersReducedMotion ? 'auto' : 'smooth'
     });
 });
 
