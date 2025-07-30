@@ -346,11 +346,27 @@ body::before {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background: var(--gradient-primary);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
     color: white;
     padding-top: 80px;
     position: relative;
     overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+    animation: backgroundShift 20s ease-in-out infinite;
 }
 
 .hero::after {
@@ -365,7 +381,7 @@ body::before {
         radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
         radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
     pointer-events: none;
-    z-index: 1;
+    z-index: 2;
 }
 
 .hero::before {
@@ -388,7 +404,7 @@ body::before {
     gap: 4rem;
     align-items: center;
     position: relative;
-    z-index: 2;
+    z-index: 3;
 }
 
 .hero-content {
@@ -473,6 +489,8 @@ body::before {
     position: relative;
     overflow: hidden;
     box-shadow: var(--shadow-medium);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .btn::before {
@@ -536,6 +554,21 @@ body::before {
     position: relative;
     overflow: hidden;
     transition: var(--transition);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.profile-placeholder::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(45deg, #667eea, #764ba2, #f093fb);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0.3;
+    animation: rotate 8s linear infinite;
 }
 
 .profile-placeholder::before {
@@ -568,6 +601,11 @@ section {
     color: var(--text-primary);
     position: relative;
     letter-spacing: -1px;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 2px 4px rgba(99, 102, 241, 0.2));
 }
 
 .section-title::after {
@@ -776,6 +814,27 @@ section {
     border-radius: 12px;
     transition: var(--transition);
     border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.skill-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-primary);
+    opacity: 0.05;
+    transition: var(--transition);
+    z-index: 0;
+}
+
+.skill-item:hover::before {
+    left: 0;
 }
 
 .skill-item:hover {
@@ -790,6 +849,8 @@ section {
     color: var(--primary-color);
     width: 30px;
     transition: var(--transition);
+    position: relative;
+    z-index: 1;
 }
 
 .skill-item:hover i {
@@ -801,6 +862,8 @@ section {
     font-weight: 600;
     color: var(--text-primary);
     font-size: 1.1rem;
+    position: relative;
+    z-index: 1;
 }
 
 /* Projects Section */
@@ -835,6 +898,8 @@ section {
     transition: var(--transition-slow);
     position: relative;
     border: 1px solid rgba(99, 102, 241, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .project-card::before {
@@ -861,12 +926,26 @@ section {
 
 .project-image {
     height: 250px;
-    background: var(--gradient-primary);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
+    position: relative;
+}
+
+.project-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    pointer-events: none;
 }
 
 .project-image i {
@@ -874,6 +953,7 @@ section {
     color: white;
     z-index: 2;
     transition: var(--transition);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
 .project-overlay {
@@ -882,16 +962,22 @@ section {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
     transition: var(--transition);
+    z-index: 3;
 }
 
 .project-card:hover .project-overlay {
     opacity: 1;
+}
+
+.project-card:hover .project-image i {
+    opacity: 0.3;
+    transform: scale(0.8);
 }
 
 .project-tech {
@@ -990,13 +1076,15 @@ section {
 .cert-item {
     background: var(--bg-primary);
     padding: 3rem 2rem;
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-lg);
     text-align: center;
     box-shadow: var(--shadow-light);
-    transition: var(--transition);
+    transition: var(--transition-slow);
     position: relative;
     overflow: hidden;
     border: 1px solid rgba(99, 102, 241, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .cert-item::before {
