@@ -135,6 +135,12 @@ body {
     list-style: none;
     gap: 3rem;
     align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    list-style: none;
 }
 
 .nav-link {
@@ -151,6 +157,7 @@ body {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    cursor: pointer;
 }
 
 .nav-link::before {
@@ -1121,6 +1128,7 @@ section {
         border-radius: 0 0 25px 25px;
         border: 1px solid rgba(255, 255, 255, 0.3);
         gap: 1.5rem;
+        z-index: 999;
     }
 
     .nav-menu.active {
@@ -1138,10 +1146,19 @@ section {
         justify-content: center;
         gap: 0.5rem;
         transition: var(--transition);
+        width: 90%;
+        max-width: 300px;
+        margin: 0 auto;
     }
 
     .nav-menu .nav-link i {
         font-size: 1.2rem;
+    }
+
+    .nav-menu .nav-item {
+        width: 100%;
+        display: flex;
+        justify-content: center;
     }
 
     .hero-container {
