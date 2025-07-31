@@ -1517,89 +1517,11 @@ section {
     border-color: var(--accent-color);
 }
 
-/* Subtle Glow Effect */
-.project-card::before,
-.skill-category::before,
-.cert-item::before,
-.education-item::before,
-.contact-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-        135deg,
-        rgba(245, 158, 11, 0.05) 0%,
-        transparent 50%,
-        rgba(16, 185, 129, 0.05) 100%
-    );
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-    z-index: 1;
-}
 
-.project-card.hovering::before,
-.skill-category.hovering::before,
-.cert-item.hovering::before,
-.education-item.hovering::before,
-.contact-item.hovering::before {
-    opacity: 1;
-}
 
-/* Subtle Border Highlight */
-.project-card::after,
-.skill-category::after,
-.cert-item::after,
-.education-item::after,
-.contact-item::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: var(--gradient-secondary);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 2;
-}
 
-.project-card.hovering::after,
-.skill-category.hovering::after,
-.cert-item.hovering::after,
-.education-item.hovering::after,
-.contact-item.hovering::after {
-    opacity: 1;
-}
 
-/* Subtle Shine Effect */
-.shine {
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.15),
-        transparent
-    );
-    transition: left 0.4s ease;
-    pointer-events: none;
-    z-index: 2;
-}
 
-.project-card.hovering .shine,
-.skill-category.hovering .shine,
-.cert-item.hovering .shine,
-.education-item.hovering .shine,
-.contact-item.hovering .shine {
-    left: 100%;
-}
 
 
 
