@@ -93,57 +93,28 @@ const cardSelectors = '.project-card, .skill-category, .cert-item, .education-it
 if (!prefersReducedMotion) {
     // Premium 3D hover effects
     document.querySelectorAll(cardSelectors).forEach(card => {
-        let animationId;
+
         
         // Add shine element
         const shine = document.createElement('div');
         shine.className = 'shine';
         card.appendChild(shine);
         
-        // Add will-change for performance
-        card.style.willChange = 'transform, filter';
+
         
+        card.addEventListener('mouseenter', function() {
+            this.classList.add('hovering');
+        });
+        
+
+        
+        // Simplified hover effect - no complex calculations needed
         card.addEventListener('mouseenter', function() {
             this.classList.add('hovering');
         });
         
         card.addEventListener('mouseleave', function() {
             this.classList.remove('hovering');
-            // Reset transform
-            this.style.setProperty('--rx', '0deg');
-            this.style.setProperty('--ry', '0deg');
-            this.style.setProperty('--mx', '50%');
-            this.style.setProperty('--my', '50%');
-            
-            if (animationId) {
-                cancelAnimationFrame(animationId);
-            }
-        });
-        
-        card.addEventListener('mousemove', function(e) {
-            if (animationId) {
-                cancelAnimationFrame(animationId);
-            }
-            
-            animationId = requestAnimationFrame(() => {
-                const rect = this.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                // Calculate cursor position as percentage
-                const mx = (x / rect.width) * 100;
-                const my = (y / rect.height) * 100;
-                
-                // Calculate tilt angles (max 8 degrees)
-                const rx = ((my - 50) / 50) * -8;
-                const ry = ((mx - 50) / 50) * 8;
-                
-                // Set CSS custom properties
-                this.style.setProperty('--rx', `${rx}deg`);
-                this.style.setProperty('--ry', `${ry}deg`);
-                this.style.setProperty('--mx', `${mx}%`);
-                this.style.setProperty('--my', `${my}%`);
-            });
         });
     });
 } else {
