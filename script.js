@@ -95,10 +95,7 @@ if (!prefersReducedMotion) {
     document.querySelectorAll(cardSelectors).forEach(card => {
 
         
-        // Add shine element
-        const shine = document.createElement('div');
-        shine.className = 'shine';
-        card.appendChild(shine);
+
         
 
         
