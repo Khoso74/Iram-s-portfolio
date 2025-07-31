@@ -807,6 +807,13 @@ section {
     height: 3px;
     background: var(--gradient-primary);
     border-radius: 2px;
+    transition: var(--transition);
+}
+
+.skill-category:hover h3::after {
+    width: 60px;
+    background: var(--gradient-secondary);
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
 }
 
 .skill-items {
@@ -852,8 +859,27 @@ section {
 .skill-item:hover {
     background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
     transform: translateX(10px);
-    border-color: var(--primary-color);
-    box-shadow: var(--shadow-light);
+    border-color: var(--accent-color);
+    box-shadow: var(--shadow-md);
+    position: relative;
+}
+
+.skill-item:hover::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(245, 158, 11, 0.1) 0%, 
+        rgba(16, 185, 129, 0.1) 50%, 
+        rgba(59, 130, 246, 0.1) 100%);
+    border-radius: inherit;
+    opacity: 0;
+    animation: skillGlow 0.6s ease-out forwards;
+    pointer-events: none;
+    z-index: 1;
 }
 
 .skill-item i {
@@ -868,6 +894,7 @@ section {
 .skill-item:hover i {
     transform: scale(1.2) rotate(5deg);
     color: var(--accent-color);
+    filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.6));
 }
 
 .skill-item span {
@@ -1490,6 +1517,21 @@ section {
     }
     50% {
         transform: translateY(-20px);
+    }
+}
+
+@keyframes skillGlow {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.02);
+    }
+    100% {
+        opacity: 0.6;
+        transform: scale(1);
     }
 }
 
