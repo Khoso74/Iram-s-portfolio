@@ -1506,21 +1506,18 @@ section {
     perspective: 900px;
 }
 
-/* 3D Transform with CSS Custom Properties */
+/* Refined Hover Transform */
 .project-card.hovering,
 .skill-category.hovering,
 .cert-item.hovering,
 .education-item.hovering,
 .contact-item.hovering {
-    transform: perspective(900px) 
-               rotateX(var(--ry, 0deg)) 
-               rotateY(var(--rx, 0deg)) 
-               translateZ(8px) 
-               scale(1.02);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--accent-color);
 }
 
-/* Glow Effect */
+/* Subtle Glow Effect */
 .project-card::before,
 .skill-category::before,
 .cert-item::before,
@@ -1532,10 +1529,11 @@ section {
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(
-        closest-side at var(--mx, 50%) var(--my, 50%),
-        rgba(124, 58, 237, 0.25),
-        transparent 60%
+    background: linear-gradient(
+        135deg,
+        rgba(245, 158, 11, 0.05) 0%,
+        transparent 50%,
+        rgba(16, 185, 129, 0.05) 100%
     );
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -1551,7 +1549,7 @@ section {
     opacity: 1;
 }
 
-/* Animated Border */
+/* Subtle Border Highlight */
 .project-card::after,
 .skill-category::after,
 .cert-item::after,
@@ -1559,22 +1557,14 @@ section {
 .contact-item::after {
     content: '';
     position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: conic-gradient(
-        var(--primary-color),
-        #8b5cf6,
-        #f093fb,
-        var(--primary-color)
-    );
-    border-radius: inherit;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-secondary);
     opacity: 0;
     transition: opacity 0.3s ease;
-    z-index: -1;
-    animation: borderRotate 3s linear infinite;
-    animation-play-state: paused;
+    z-index: 2;
 }
 
 .project-card.hovering::after,
@@ -1583,10 +1573,9 @@ section {
 .education-item.hovering::after,
 .contact-item.hovering::after {
     opacity: 1;
-    animation-play-state: running;
 }
 
-/* Shine Effect */
+/* Subtle Shine Effect */
 .shine {
     position: absolute;
     top: 0;
@@ -1596,10 +1585,10 @@ section {
     background: linear-gradient(
         90deg,
         transparent,
-        rgba(255, 255, 255, 0.35),
+        rgba(255, 255, 255, 0.15),
         transparent
     );
-    transition: left 0.5s ease;
+    transition: left 0.4s ease;
     pointer-events: none;
     z-index: 2;
 }
@@ -1612,15 +1601,7 @@ section {
     left: 100%;
 }
 
-/* Border Rotation Animation */
-@keyframes borderRotate {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
+
 
 /* Ensure content stays above effects */
 .project-card > *,
