@@ -193,7 +193,7 @@ body::before {
 }
 
 .nav-logo h2 {
-    background: var(--gradient-primary);
+    background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -207,6 +207,7 @@ body::before {
     overflow: hidden;
     text-overflow: ellipsis;
     font-family: var(--font-family-display);
+    filter: drop-shadow(0 1px 2px rgba(15, 23, 42, 0.1));
 }
 
 .nav-logo::before {
@@ -248,7 +249,7 @@ body::before {
 
 .nav-link {
     text-decoration: none;
-    color: var(--text-secondary);
+    color: #475569;
     font-weight: 600;
     font-size: 0.95rem;
     transition: var(--transition);
@@ -310,6 +311,7 @@ body::before {
     font-size: 0.9rem;
     transition: var(--transition);
     flex-shrink: 0;
+    color: #64748b;
 }
 
 .nav-link span {
@@ -319,18 +321,19 @@ body::before {
 }
 
 .nav-link:hover {
-    color: var(--text-primary);
-    background: rgba(15, 23, 42, 0.05);
+    color: #1e293b;
+    background: rgba(245, 158, 11, 0.08);
 }
 
 .nav-link:hover i {
-    color: var(--primary-color);
+    color: var(--accent-color);
 }
 
 .nav-link.active {
-    color: var(--text-primary);
-    background: rgba(15, 23, 42, 0.08);
+    color: #1e293b;
+    background: rgba(245, 158, 11, 0.12);
     border-color: var(--accent-color);
+    font-weight: 700;
 }
 
 .nav-link.active::after {
@@ -447,13 +450,14 @@ body::before {
     line-height: 1.1;
     letter-spacing: -0.02em;
     animation: fadeInUp 1s ease-out;
-    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 50%, #e2e8f0 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     position: relative;
     font-family: var(--font-family-display);
-    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.1));
 }
 
 .hero-title::after {
@@ -473,16 +477,18 @@ body::before {
     font-size: 1.8rem;
     font-weight: 600;
     margin-bottom: 1.5rem;
-    color: #e5e7eb;
+    color: #f1f5f9;
     animation: fadeInUp 1s ease-out 0.2s both;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .hero-description {
     font-size: 1.2rem;
     margin-bottom: 2.5rem;
-    color: #d1d5db;
+    color: #e2e8f0;
     line-height: 1.7;
     animation: fadeInUp 1s ease-out 0.4s both;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .hero-buttons {
@@ -625,11 +631,11 @@ section {
     color: var(--text-primary);
     position: relative;
     letter-spacing: -0.02em;
-    background: var(--gradient-primary);
+    background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    filter: drop-shadow(0 2px 4px rgba(30, 41, 59, 0.2));
+    filter: drop-shadow(0 2px 4px rgba(30, 41, 59, 0.15));
     font-family: var(--font-family-display);
 }
 
