@@ -295,37 +295,12 @@ if (!prefersReducedMotion) {
     document.head.appendChild(revealStyle);
 }
 
-// Contact form enhancement (if exists)
-const contactForm = document.querySelector('form');
+
+
+// Contact form handling
+const contactForm = document.getElementById('contactForm');
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Add loading state
-        const submitBtn = this.querySelector('button[type="submit"]');
-        const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Sending...';
-        submitBtn.disabled = true;
-        
-        // Simulate form submission
-        setTimeout(() => {
-            submitBtn.textContent = 'Message Sent!';
-            submitBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
-            
-            setTimeout(() => {
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-                submitBtn.style.background = '';
-                this.reset();
-            }, 2000);
-        }, 1500);
-    });
-}
-
-// Freelance contact form handling
-const freelanceForm = document.getElementById('freelanceForm');
-if (freelanceForm) {
-    freelanceForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
         // Get form data
@@ -334,7 +309,7 @@ if (freelanceForm) {
         const originalText = submitBtn.innerHTML;
         
         // Add loading state
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending Request...';
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
         submitBtn.disabled = true;
         
         // Simulate form submission (replace with actual form handling)
@@ -344,8 +319,8 @@ if (freelanceForm) {
             successMessage.className = 'form-success';
             successMessage.innerHTML = `
                 <i class="fas fa-check-circle"></i>
-                <h4>Thank you for your project request!</h4>
-                <p>I've received your message and will get back to you within 24 hours. I'm excited to work on your project!</p>
+                <h4>Message sent successfully!</h4>
+                <p>Thank you for reaching out. I'll get back to you within 24 hours.</p>
             `;
             
             // Insert success message before form
@@ -366,11 +341,11 @@ if (freelanceForm) {
                 successMessage.remove();
             }, 5000);
             
-        }, 2000);
+        }, 1500);
     });
     
     // Form validation enhancement
-    const requiredFields = freelanceForm.querySelectorAll('[required]');
+    const requiredFields = contactForm.querySelectorAll('[required]');
     requiredFields.forEach(field => {
         field.addEventListener('blur', function() {
             if (this.value.trim() === '') {
@@ -386,31 +361,6 @@ if (freelanceForm) {
             }
         });
     });
-    
-    // Service selection enhancement
-    const serviceSelect = document.getElementById('service');
-    if (serviceSelect) {
-        serviceSelect.addEventListener('change', function() {
-            if (this.value === 'other') {
-                // Create input field for "other" service
-                const otherServiceDiv = document.createElement('div');
-                otherServiceDiv.className = 'form-group';
-                otherServiceDiv.innerHTML = `
-                    <label for="other-service">Please specify the service</label>
-                    <input type="text" id="other-service" name="other-service" required>
-                `;
-                
-                // Insert after service select
-                this.parentNode.insertBefore(otherServiceDiv, this.nextSibling);
-            } else {
-                // Remove "other" input if it exists
-                const otherServiceInput = document.getElementById('other-service');
-                if (otherServiceInput) {
-                    otherServiceInput.parentNode.remove();
-                }
-            }
-        });
-    }
 }
 
 // Preloader (optional)
