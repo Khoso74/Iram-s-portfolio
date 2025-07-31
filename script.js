@@ -87,16 +87,76 @@ if (!prefersReducedMotion) {
     });
 }
 
-// Card hover effects enhancement (only if motion is not reduced)
+// Premium 3D Card Hover Effects
+const cardSelectors = '.project-card, .skill-category, .cert-item, .education-item, .contact-item';
+
 if (!prefersReducedMotion) {
-    document.querySelectorAll('.skill-category, .cert-item, .education-item, .contact-item').forEach(card => {
+    // Premium 3D hover effects
+    document.querySelectorAll(cardSelectors).forEach(card => {
+        let animationId;
+        
+        // Add shine element
+        const shine = document.createElement('div');
+        shine.className = 'shine';
+        card.appendChild(shine);
+        
+        // Add will-change for performance
+        card.style.willChange = 'transform, filter';
+        
         card.addEventListener('mouseenter', function() {
-            this.style.transform = this.style.transform.replace('scale(1.02)', 'scale(1.03)');
-            this.style.transform = this.style.transform.replace('scale(1.03)', 'scale(1.03)');
+            this.classList.add('hovering');
         });
         
         card.addEventListener('mouseleave', function() {
-            this.style.transform = this.style.transform.replace('scale(1.03)', 'scale(1.02)');
+            this.classList.remove('hovering');
+            // Reset transform
+            this.style.setProperty('--rx', '0deg');
+            this.style.setProperty('--ry', '0deg');
+            this.style.setProperty('--mx', '50%');
+            this.style.setProperty('--my', '50%');
+            
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+            }
+        });
+        
+        card.addEventListener('mousemove', function(e) {
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+            }
+            
+            animationId = requestAnimationFrame(() => {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                // Calculate cursor position as percentage
+                const mx = (x / rect.width) * 100;
+                const my = (y / rect.height) * 100;
+                
+                // Calculate tilt angles (max 8 degrees)
+                const rx = ((my - 50) / 50) * -8;
+                const ry = ((mx - 50) / 50) * 8;
+                
+                // Set CSS custom properties
+                this.style.setProperty('--rx', `${rx}deg`);
+                this.style.setProperty('--ry', `${ry}deg`);
+                this.style.setProperty('--mx', `${mx}%`);
+                this.style.setProperty('--my', `${my}%`);
+            });
+        });
+    });
+} else {
+    // Fallback for reduced motion preference
+    document.querySelectorAll(cardSelectors).forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.01)';
+            this.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.12)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+            this.style.boxShadow = '';
         });
     });
 }
