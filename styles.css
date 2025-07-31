@@ -533,7 +533,7 @@ body::before {
     position: absolute;
     bottom: -12px;
     left: 0;
-    width: 100%;
+    width: 75%;
     height: 5px;
     background: var(--gradient-secondary);
     border-radius: 3px;
