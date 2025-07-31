@@ -297,10 +297,10 @@ if (!prefersReducedMotion) {
 
 
 
-// Contact form handling
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
+// Freelance form handling
+const freelanceForm = document.getElementById('freelanceForm');
+if (freelanceForm) {
+    freelanceForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
         // Get form data
@@ -309,7 +309,7 @@ if (contactForm) {
         const originalText = submitBtn.innerHTML;
         
         // Add loading state
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending Request...';
         submitBtn.disabled = true;
         
         // Simulate form submission (replace with actual form handling)
@@ -319,8 +319,8 @@ if (contactForm) {
             successMessage.className = 'form-success';
             successMessage.innerHTML = `
                 <i class="fas fa-check-circle"></i>
-                <h4>Message sent successfully!</h4>
-                <p>Thank you for reaching out. I'll get back to you within 24 hours.</p>
+                <h4>Request sent successfully!</h4>
+                <p>Thank you for your project request. I'll review your requirements and get back to you within 24 hours.</p>
             `;
             
             // Insert success message before form
@@ -345,7 +345,7 @@ if (contactForm) {
     });
     
     // Form validation enhancement
-    const requiredFields = contactForm.querySelectorAll('[required]');
+    const requiredFields = freelanceForm.querySelectorAll('[required]');
     requiredFields.forEach(field => {
         field.addEventListener('blur', function() {
             if (this.value.trim() === '') {
@@ -361,6 +361,31 @@ if (contactForm) {
             }
         });
     });
+    
+    // Service selection enhancement
+    const serviceSelect = document.getElementById('service');
+    if (serviceSelect) {
+        serviceSelect.addEventListener('change', function() {
+            if (this.value === 'other') {
+                // Create input field for "other" service
+                const otherServiceDiv = document.createElement('div');
+                otherServiceDiv.className = 'form-group';
+                otherServiceDiv.innerHTML = `
+                    <label for="other-service">Please specify the service</label>
+                    <input type="text" id="other-service" name="other-service" required>
+                `;
+                
+                // Insert after service select
+                this.parentNode.insertBefore(otherServiceDiv, this.nextSibling);
+            } else {
+                // Remove "other" input if it exists
+                const otherServiceInput = document.getElementById('other-service');
+                if (otherServiceInput) {
+                    otherServiceInput.parentNode.remove();
+                }
+            }
+        });
+    }
 }
 
 // Preloader (optional)
