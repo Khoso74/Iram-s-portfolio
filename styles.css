@@ -729,25 +729,9 @@ section {
     opacity: 0.02;
 }
 
-.skill-category::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: var(--gradient-primary);
-    transform: scaleX(0);
-    transition: var(--transition);
-}
 
-.skill-category:hover::before {
-    transform: scaleX(1);
-}
 
 .skill-category:hover {
-    transform: translateY(-15px) scale(1.03);
-    box-shadow: var(--shadow-heavy);
     border-color: rgba(99, 102, 241, 0.3);
 }
 
@@ -878,25 +862,9 @@ section {
     -webkit-backdrop-filter: blur(10px);
 }
 
-.project-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: var(--gradient-primary);
-    transform: scaleX(0);
-    transition: var(--transition);
-}
 
-.project-card:hover::before {
-    transform: scaleX(1);
-}
 
 .project-card:hover {
-    transform: translateY(-15px) scale(1.02);
-    box-shadow: var(--shadow-heavy);
     border-color: var(--primary-color);
 }
 
@@ -1063,26 +1031,9 @@ section {
     -webkit-backdrop-filter: blur(10px);
 }
 
-.cert-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--gradient-primary);
-    opacity: 0;
-    transition: var(--transition);
-    z-index: 1;
-}
 
-.cert-item:hover::before {
-    opacity: 0.05;
-}
 
 .cert-item:hover {
-    transform: translateY(-10px) scale(1.03);
-    box-shadow: var(--shadow-heavy);
     border-color: var(--primary-color);
 }
 
@@ -1247,25 +1198,9 @@ section {
     overflow: hidden;
 }
 
-.education-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 5px;
-    height: 100%;
-    background: var(--gradient-primary);
-    transform: scaleY(0);
-    transition: var(--transition);
-}
 
-.education-item:hover::before {
-    transform: scaleY(1);
-}
 
 .education-item:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: var(--shadow-heavy);
     border-color: var(--primary-color);
 }
 
@@ -1333,25 +1268,9 @@ section {
     overflow: hidden;
 }
 
-.contact-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--gradient-primary);
-    opacity: 0;
-    transition: var(--transition);
-}
 
-.contact-item:hover::before {
-    opacity: 0.05;
-}
 
 .contact-item:hover {
-    transform: translateY(-8px) scale(1.03);
-    box-shadow: var(--shadow-heavy);
     border-color: var(--primary-color);
 }
 
@@ -1521,6 +1440,145 @@ section {
     50% {
         transform: translateY(-20px);
     }
+}
+
+/* Premium 3D Card Hover Effects */
+.project-card,
+.skill-category,
+.cert-item,
+.education-item,
+.contact-item {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    perspective: 900px;
+}
+
+/* 3D Transform with CSS Custom Properties */
+.project-card.hovering,
+.skill-category.hovering,
+.cert-item.hovering,
+.education-item.hovering,
+.contact-item.hovering {
+    transform: perspective(900px) 
+               rotateX(var(--ry, 0deg)) 
+               rotateY(var(--rx, 0deg)) 
+               translateZ(8px) 
+               scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Glow Effect */
+.project-card::before,
+.skill-category::before,
+.cert-item::before,
+.education-item::before,
+.contact-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        closest-side at var(--mx, 50%) var(--my, 50%),
+        rgba(124, 58, 237, 0.25),
+        transparent 60%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.project-card.hovering::before,
+.skill-category.hovering::before,
+.cert-item.hovering::before,
+.education-item.hovering::before,
+.contact-item.hovering::before {
+    opacity: 1;
+}
+
+/* Animated Border */
+.project-card::after,
+.skill-category::after,
+.cert-item::after,
+.education-item::after,
+.contact-item::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: conic-gradient(
+        var(--primary-color),
+        #8b5cf6,
+        #f093fb,
+        var(--primary-color)
+    );
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+    animation: borderRotate 3s linear infinite;
+    animation-play-state: paused;
+}
+
+.project-card.hovering::after,
+.skill-category.hovering::after,
+.cert-item.hovering::after,
+.education-item.hovering::after,
+.contact-item.hovering::after {
+    opacity: 1;
+    animation-play-state: running;
+}
+
+/* Shine Effect */
+.shine {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.35),
+        transparent
+    );
+    transition: left 0.5s ease;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.project-card.hovering .shine,
+.skill-category.hovering .shine,
+.cert-item.hovering .shine,
+.education-item.hovering .shine,
+.contact-item.hovering .shine {
+    left: 100%;
+}
+
+/* Border Rotation Animation */
+@keyframes borderRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Ensure content stays above effects */
+.project-card > *,
+.skill-category > *,
+.cert-item > *,
+.education-item > *,
+.contact-item > * {
+    position: relative;
+    z-index: 3;
 }
 
 
