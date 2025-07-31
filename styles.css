@@ -528,20 +528,37 @@ body::before {
     z-index: 2;
 }
 
+.hero-title {
+    font-size: 5rem;
+    font-weight: var(--font-weight-black);
+    margin-bottom: 1.5rem;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    animation: fadeInUp 1s ease-out;
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    font-family: var(--font-family-display);
+    text-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    filter: drop-shadow(0 4px 8px rgba(251, 191, 36, 0.3));
+    z-index: 2;
+    display: inline-block;
+}
+
 .hero-title::after {
     content: '';
     position: absolute;
     bottom: -12px;
     left: 0;
-    width: 100%;
+    right: 0;
     height: 5px;
     background: var(--gradient-secondary);
     border-radius: 3px;
     animation: fadeInUp 1s ease-out 0.3s both;
     box-shadow: var(--shadow-gold);
     z-index: 2;
-    transform: scaleX(0.85);
-    transform-origin: left;
 }
 
 .hero-subtitle {
