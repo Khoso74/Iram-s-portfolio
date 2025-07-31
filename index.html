@@ -394,139 +394,33 @@
             <div class="contact-content">
                 <!-- Contact Form - Left Side -->
                 <div class="contact-form-container">
-                    <div class="form-header">
-                        <h3>Request Freelancing Services</h3>
-                        <p class="form-description">Ready to bring your ideas to life? Let's discuss your project and create something amazing together!</p>
-                    </div>
-                    
-                    <form class="contact-form" id="freelanceForm">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="name">Full Name *</label>
-                                <input type="text" id="name" name="name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email Address *</label>
-                                <input type="email" id="email" name="email" required>
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="company">Company/Organization</label>
-                                <input type="text" id="company" name="company">
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Phone Number</label>
-                                <input type="tel" id="phone" name="phone">
-                            </div>
+                    <h3 class="contact-form-title">Get In Touch</h3>
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
                         </div>
                         
                         <div class="form-group">
-                            <label for="service">Service Required *</label>
-                            <select id="service" name="service" required>
-                                <option value="">Select a service</option>
-                                <option value="ui-design">UI Design</option>
-                                <option value="ux-design">UX Design</option>
-                                <option value="web-design">Web Design</option>
-                                <option value="app-design">App Design</option>
-                                <option value="prototyping">Prototyping</option>
-                                <option value="user-research">User Research</option>
-                                <option value="social-media-design">Social Media Design</option>
-                                <option value="linkedin-optimization">LinkedIn Profile Optimization</option>
-                                <option value="branding">Branding & Identity</option>
-                                <option value="other">Other (Please specify)</option>
-                            </select>
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
                         </div>
                         
                         <div class="form-group">
-                            <label for="project-type">Project Type *</label>
-                            <select id="project-type" name="project-type" required>
-                                <option value="">Select project type</option>
-                                <option value="new-project">New Project</option>
-                                <option value="redesign">Redesign/Update</option>
-                                <option value="consultation">Consultation</option>
-                                <option value="ongoing-support">Ongoing Support</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="budget">Budget Range *</label>
-                            <select id="budget" name="budget" required>
-                                <option value="">Select budget range</option>
-                                <option value="under-1000">Under $1,000</option>
-                                <option value="1000-3000">$1,000 - $3,000</option>
-                                <option value="3000-5000">$3,000 - $5,000</option>
-                                <option value="5000-10000">$5,000 - $10,000</option>
-                                <option value="over-10000">Over $10,000</option>
-                                <option value="discuss">Let's discuss</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="timeline">Project Timeline *</label>
-                            <select id="timeline" name="timeline" required>
-                                <option value="">Select timeline</option>
-                                <option value="asap">ASAP</option>
-                                <option value="1-2-weeks">1-2 weeks</option>
-                                <option value="1-month">1 month</option>
-                                <option value="2-3-months">2-3 months</option>
-                                <option value="3-plus-months">3+ months</option>
-                                <option value="flexible">Flexible</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="description">Project Description *</label>
-                            <textarea id="description" name="description" rows="5" placeholder="Please describe your project, goals, target audience, and any specific requirements..." required></textarea>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="additional-info">Additional Information</label>
-                            <textarea id="additional-info" name="additional-info" rows="3" placeholder="Any additional details, references, or questions..."></textarea>
-                        </div>
-                        
-                        <div class="form-group checkbox-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" id="nda" name="nda">
-                                <span class="checkmark"></span>
-                                I'm interested in signing an NDA for confidentiality
-                            </label>
-                        </div>
-                        
-                        <div class="form-group checkbox-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" id="newsletter" name="newsletter">
-                                <span class="checkmark"></span>
-                                Subscribe to my newsletter for design tips and updates
-                            </label>
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="6" placeholder="Tell me about your project..." required></textarea>
                         </div>
                         
                         <button type="submit" class="submit-btn">
-                            <i class="fas fa-paper-plane"></i>
-                            Send Project Request
+                            <span>Send Message</span>
+                            <i class="fas fa-arrow-right"></i>
                         </button>
                     </form>
                 </div>
 
                 <!-- Contact Info - Right Side -->
                 <div class="contact-info-container">
-                    <div class="contact-info-header">
-                        <h3>Let's Connect</h3>
-                        <p>Ready to start your next project? Get in touch with me through any of these channels.</p>
-                    </div>
-                    
                     <div class="contact-info">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>Location</h4>
-                                <p>Multan, Punjab, Pakistan</p>
-                            </div>
-                        </div>
-                        
                         <div class="contact-item">
                             <div class="contact-icon">
                                 <i class="fas fa-envelope"></i>
@@ -539,11 +433,21 @@
                         
                         <div class="contact-item">
                             <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Location</h4>
+                                <p>Multan, Punjab, Pakistan</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
                                 <i class="fab fa-linkedin"></i>
                             </div>
                             <div class="contact-details">
                                 <h4>LinkedIn</h4>
-                                <a href="https://www.linkedin.com/in/irum-zahra-uidesigner" target="_blank">Connect on LinkedIn</a>
+                                <a href="https://www.linkedin.com/in/irum-zahra-uidesigner" target="_blank">www.linkedin.com/in/irum-zahra-uidesigner</a>
                             </div>
                         </div>
                         
@@ -553,7 +457,7 @@
                             </div>
                             <div class="contact-details">
                                 <h4>Behance</h4>
-                                <a href="https://www.behance.net/iramzahra2" target="_blank">View Portfolio</a>
+                                <a href="https://www.behance.net/iramzahra2" target="_blank">www.behance.net/iramzahra2</a>
                             </div>
                         </div>
                     </div>
