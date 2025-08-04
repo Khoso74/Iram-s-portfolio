@@ -505,9 +505,18 @@ body::before {
     color: #ffffff !important;
     position: relative;
     font-family: var(--font-family-display);
-    text-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
-    filter: drop-shadow(0 4px 8px rgba(255, 255, 255, 0.3));
+    text-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.9),
+        0 4px 8px rgba(0, 0, 0, 0.8),
+        0 8px 16px rgba(0, 0, 0, 0.7);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
     z-index: 10;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .name-underline {
@@ -536,23 +545,37 @@ body::before {
     font-size: 2rem;
     font-weight: var(--font-weight-bold);
     margin-bottom: 1.5rem;
-    color: #f8fafc;
+    color: #ffffff;
     animation: fadeInUp 1s ease-out 0.2s both;
-    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    z-index: 2;
+    text-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.8),
+        0 4px 8px rgba(0, 0, 0, 0.6);
+    z-index: 10;
     position: relative;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 }
 
 .hero-description {
     font-size: 1.3rem;
     margin-bottom: 2.5rem;
-    color: #f1f5f9;
+    color: #ffffff;
     line-height: 1.8;
     animation: fadeInUp 1s ease-out 0.4s both;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    z-index: 2;
+    text-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.7),
+        0 4px 8px rgba(0, 0, 0, 0.5);
+    z-index: 10;
     position: relative;
     font-weight: var(--font-weight-medium);
+    background: rgba(0, 0, 0, 0.15);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 }
 
 .hero-buttons {
