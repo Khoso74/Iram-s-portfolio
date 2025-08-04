@@ -505,17 +505,13 @@ body::before {
     color: #fbbf24 !important;
     position: relative;
     font-family: var(--font-family-display);
-    filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.2));
     z-index: 10;
     padding: 1rem 2rem;
     border-radius: 12px;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    text-shadow: 
-        0 0 10px rgba(251, 191, 36, 0.5),
-        0 0 20px rgba(251, 191, 36, 0.3),
-        0 0 30px rgba(251, 191, 36, 0.2);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .hero-title::before {
@@ -530,26 +526,7 @@ body::before {
     z-index: -1;
 }
 
-.hero-title::after {
-    content: 'Iram Zahra';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--gradient-secondary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-size: 5rem;
-    font-weight: var(--font-weight-black);
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-    font-family: var(--font-family-display);
-    padding: 1rem 2rem;
-    z-index: 1;
-    pointer-events: none;
-}
+
 
 .name-underline {
     position: relative;
