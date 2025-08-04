@@ -508,7 +508,7 @@ body::before {
     background-clip: text;
     position: relative;
     font-family: var(--font-family-display);
-    filter: drop-shadow(0 4px 8px rgba(251, 191, 36, 0.3));
+    filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.2));
     z-index: 10;
     padding: 1rem 2rem;
     border-radius: 12px;
@@ -555,7 +555,7 @@ body::before {
     font-size: 2rem;
     font-weight: var(--font-weight-bold);
     margin-bottom: 1.5rem;
-    color: #f59e0b !important;
+    color: #ffffff !important;
     animation: fadeInUp 1s ease-out 0.2s both;
     text-shadow: 
         0 2px 4px rgba(0, 0, 0, 0.8),
@@ -572,7 +572,7 @@ body::before {
 .hero-description {
     font-size: 1.3rem;
     margin-bottom: 2.5rem;
-    color: #fbbf24 !important;
+    color: #fde68a !important;
     line-height: 1.8;
     animation: fadeInUp 1s ease-out 0.4s both;
     text-shadow: 
