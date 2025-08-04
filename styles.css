@@ -497,11 +497,11 @@ body::before {
 }
 
 .hero-title {
-    font-size: 6rem;
+    font-size: 4.5rem;
     font-weight: var(--font-weight-black);
-    margin-bottom: 2.5rem;
-    line-height: 1.02;
-    letter-spacing: -0.04em;
+    margin-bottom: 2rem;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
     animation: fadeInUp 1s ease-out;
     background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
     -webkit-background-clip: text;
@@ -511,9 +511,9 @@ body::before {
     font-family: var(--font-family-display);
     z-index: 10;
     text-shadow: 
-        0 4px 8px rgba(0, 0, 0, 0.6),
-        0 8px 16px rgba(0, 0, 0, 0.4);
-    filter: drop-shadow(0 8px 24px rgba(251, 191, 36, 0.4));
+        0 3px 6px rgba(0, 0, 0, 0.5),
+        0 6px 12px rgba(0, 0, 0, 0.3);
+    filter: drop-shadow(0 6px 18px rgba(251, 191, 36, 0.3));
 }
 
 
@@ -528,32 +528,36 @@ body::before {
 .name-underline::after {
     content: '';
     position: absolute;
-    bottom: -8px;
+    bottom: -6px;
     left: 0;
     right: 0;
-    height: 3px;
+    height: 2px;
     background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
     border-radius: 2px;
     animation: fadeInUp 1s ease-out 0.3s both;
     box-shadow: 
-        0 0 8px rgba(251, 191, 36, 0.5),
-        0 0 16px rgba(251, 191, 36, 0.3);
+        0 0 6px rgba(251, 191, 36, 0.4),
+        0 0 12px rgba(251, 191, 36, 0.2);
     z-index: 2;
 }
 
 .hero-subtitle {
-    font-size: 2.5rem;
-    font-weight: var(--font-weight-bold);
-    margin-bottom: 2.5rem;
-    color: #ffffff !important;
+    font-size: 1.8rem;
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: 2rem;
+    color: #f8fafc !important;
     animation: fadeInUp 1s ease-out 0.2s both;
     text-shadow: 
-        0 3px 6px rgba(0, 0, 0, 0.6),
-        0 6px 12px rgba(0, 0, 0, 0.4);
+        0 2px 4px rgba(0, 0, 0, 0.5),
+        0 4px 8px rgba(0, 0, 0, 0.3);
     z-index: 10;
     position: relative;
-    letter-spacing: 0.04em;
-    opacity: 0.98;
+    letter-spacing: 0.03em;
+    opacity: 0.95;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .hero-description {
