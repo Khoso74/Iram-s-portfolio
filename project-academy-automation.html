@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academy Task Automation - Iram Zahra</title>
+    <meta name="description" content="Streamlined daily task management system for academies using Google Apps Script to automate routine administrative processes.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        .project-detail {
+            padding: 120px 0 80px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            min-height: 100vh;
+        }
+        
+        .project-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .project-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+        }
+        
+        .project-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .project-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+        
+        .project-tech-stack {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .tech-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        .project-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+        
+        .project-section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title i {
+            color: #f5576c;
+        }
+        
+        .project-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 30px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .feature-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #f5576c;
+        }
+        
+        .feature-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .feature-description {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .screenshot-item {
+            background: #f8f9fa;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .screenshot-placeholder {
+            height: 200px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .screenshot-caption {
+            padding: 15px;
+            text-align: center;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(245, 87, 108, 0.3);
+        }
+        
+        .project-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(245, 87, 108, 0.4);
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            background: rgba(255,255,255,0.9);
+            color: #333;
+            padding: 12px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .back-button:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .project-title {
+                font-size: 2rem;
+            }
+            
+            .project-content {
+                padding: 20px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .screenshots-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .back-button {
+                top: 20px;
+                left: 20px;
+                padding: 10px 16px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-button">
+        <i class="fas fa-arrow-left"></i> Back to Portfolio
+    </a>
+
+    <section class="project-detail">
+        <div class="project-container">
+            <div class="project-header">
+                <h1 class="project-title">Academy Task Automation</h1>
+                <p class="project-subtitle">Streamlined daily task management system for academies</p>
+                <div class="project-tech-stack">
+                    <span class="tech-badge">Apps Script</span>
+                    <span class="tech-badge">Google Forms</span>
+                    <span class="tech-badge">Automation</span>
+                    <span class="tech-badge">Google Sheets</span>
+                    <span class="tech-badge">Email Integration</span>
+                </div>
+            </div>
+
+            <div class="project-content">
+                <div class="project-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-info-circle"></i>
+                        Project Overview
+                    </h2>
+                    <p class="project-description">
+                        The Academy Task Automation system is a comprehensive solution designed to streamline 
+                        administrative workflows in educational academies. This project addresses the common 
+                        challenges faced by educational institutions in managing daily tasks, student data, 
+                        and administrative processes efficiently.
+                    </p>
+                    <p class="project-description">
+                        Built using Google Apps Script and integrated with Google Workspace services, this 
+                        automation system eliminates manual data entry, reduces administrative overhead, and 
+                        provides real-time insights into academy operations. The system is designed to be 
+                        scalable, user-friendly, and cost-effective for educational institutions of all sizes.
+                    </p>
+                </div>
+
+                <div class="project-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-star"></i>
+                        Key Features
+                    </h2>
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <div class="feature-title">
+                                <i class="fas fa-robot"></i>
+                                Automated Form Processing
+                            </div>
+                            <div class="feature-description">
+                                Intelligent processing of Google Forms submissions with automatic data 
+                                categorization, validation, and routing to appropriate departments or staff members.
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-title">
+                                <i class="fas fa-envelope"></i>
+                                Email Notifications
+                            </div>
+                            <div class="feature-description">
+                                Automated email alerts for form submissions, task assignments, and important 
+                                updates. Customizable notification templates for different types of events.
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-title">
+                                <i class="fas fa-chart-bar"></i>
+                                Data Analytics Dashboard
+                            </div>
+                            <div class="feature-description">
+                                Comprehensive analytics dashboard providing insights into task completion 
+                                rates, response times, and operational efficiency metrics.
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-title">
+                                <i class="fas fa-tasks"></i>
+                                Task Management System
+                            </div>
+                            <div class="feature-description">
+                                Centralized task tracking with automated assignment, deadline management, 
+                                and progress monitoring for all academy staff members.
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-title">
+                                <i class="fas fa-database"></i>
+                                Centralized Data Storage
+                            </div>
+                            <div class="feature-description">
+                                Secure and organized data storage using Google Sheets with automated 
+                                backup and version control for all academy information.
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-title">
+                                <i class="fas fa-clock"></i>
+                                Scheduling Automation
+                            </div>
+                            <div class="feature-description">
+                                Automated scheduling system for classes, meetings, and events with 
+                                conflict detection and calendar integration.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-images"></i>
+                        Screenshots
+                    </h2>
+                    <div class="screenshots-grid">
+                        <div class="screenshot-item">
+                            <div class="screenshot-placeholder">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            <div class="screenshot-caption">Task Dashboard</div>
+                        </div>
+                        
+                        <div class="screenshot-item">
+                            <div class="screenshot-placeholder">
+                                <i class="fas fa-clipboard-list"></i>
+                            </div>
+                            <div class="screenshot-caption">Form Processing</div>
+                        </div>
+                        
+                        <div class="screenshot-item">
+                            <div class="screenshot-placeholder">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="screenshot-caption">Analytics Overview</div>
+                        </div>
+                        
+                        <div class="screenshot-item">
+                            <div class="screenshot-placeholder">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div class="screenshot-caption">Scheduling Interface</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-cogs"></i>
+                        Technical Implementation
+                    </h2>
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <div class="feature-title">
+                                <i class="fab fa-google"></i>
+                                Google Apps Script
+                            </div>
+                            <div class="feature-description">
+                                Backend automation logic implemented using Google Apps Script for seamless 
+                                integration with Google Workspace services and APIs.
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-title">
+                                <i class="fas fa-clipboard-list"></i>
+                                Google Forms Integration
+                            </div>
+                            <div class="feature-description">
+                                Automated form processing with real-time data capture and validation 
+                                using Google Forms API integration.
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-title">
+                                <i class="fas fa-paper-plane"></i>
+                                Gmail API Integration
+                            </div>
+                            <div class="feature-description">
+                                Automated email notifications and communication using Gmail API for 
+                                seamless workflow integration.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-lightbulb"></i>
+                        Benefits & Impact
+                    </h2>
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <div class="feature-title">
+                                <i class="fas fa-clock"></i>
+                                Time Savings
+                            </div>
+                            <div class="feature-description">
+                                Reduced administrative workload by 70% through automation of routine 
+                                tasks and streamlined processes.
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-title">
+                                <i class="fas fa-check-circle"></i>
+                                Improved Accuracy
+                            </div>
+                            <div class="feature-description">
+                                Eliminated manual data entry errors and ensured consistent data 
+                                processing across all academy operations.
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-title">
+                                <i class="fas fa-users"></i>
+                                Enhanced Communication
+                            </div>
+                            <div class="feature-description">
+                                Improved staff coordination and communication through automated 
+                                notifications and centralized task management.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-links">
+                    <a href="#" class="project-link">
+                        <i class="fas fa-external-link-alt"></i>
+                        Live Demo
+                    </a>
+                    <a href="#" class="project-link">
+                        <i class="fab fa-github"></i>
+                        View Code
+                    </a>
+                    <a href="index.html#contact" class="project-link">
+                        <i class="fas fa-envelope"></i>
+                        Request Similar Project
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html> 
